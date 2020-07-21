@@ -81,13 +81,13 @@ class _SurveyListPageState extends State<SurveyListPage> {
                   constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
                   alignment: Alignment.center,
                   child: Text(
-                    "Seja bem-vindo de volta!",
+                    "Seja bem-vindo(a) de volta!",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontFamily: FontNameDefaultTitle,
-                        fontWeight: FontWeight.w400),
+                        fontWeight: FontWeight.w800),
                   ),
                 ),
               ),
@@ -99,7 +99,7 @@ class _SurveyListPageState extends State<SurveyListPage> {
               textAlign: TextAlign.start,
               style: TextStyle(
                 color: PrimaryBlue1,
-                fontSize: 22,
+                fontSize: 20,
                 fontWeight: FontWeight.w800,
                 fontFamily: FontNameDefaultBody,
               ),
@@ -141,7 +141,7 @@ class _SurveyListPageState extends State<SurveyListPage> {
               textAlign: TextAlign.start,
               style: TextStyle(
                 color: PrimaryBlue2,
-                fontSize: 22,
+                fontSize: 20,
                 fontWeight: FontWeight.w800,
                 fontFamily: FontNameDefaultBody,
               ),

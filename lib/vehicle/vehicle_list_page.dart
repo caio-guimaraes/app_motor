@@ -53,7 +53,10 @@ class _VehicleListPageState extends State<VehicleListPage> {
     return ListView.builder(
       itemBuilder: (context, index) {
         return GestureDetector(
-          child: CardBody(_surveys[index].plate, _surveys[index].model),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 7, right: 7),
+            child: CardBody(_surveys[index].plate, _surveys[index].model),
+          ),
           onTap: () {
             Navigator.push(
               context,
