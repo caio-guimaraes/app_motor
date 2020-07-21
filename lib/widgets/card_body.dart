@@ -11,12 +11,13 @@ class CardBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16),
+      padding: const EdgeInsets.only(left: 12, right: 12),
       child: Container(
+        width: 130.0,
         child: Card(
           child: Padding(
             padding:
-                const EdgeInsets.only(left: 16, right: 16, top: 20, bottom: 20),
+                const EdgeInsets.only(left: 16, right: 16, top: 28, bottom: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,

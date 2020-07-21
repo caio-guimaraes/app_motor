@@ -244,7 +244,7 @@ class _SurveyPageState extends State<SurveyPage> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          RecordingAudioPage()),
+                                          RecordingAudioPage(plate: widget.plate)),
                                 );
                               } else {
                                 final message = SnackBar(

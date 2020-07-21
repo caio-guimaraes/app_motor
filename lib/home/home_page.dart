@@ -42,53 +42,14 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         );
+        break;
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   shape: RoundedRectangleBorder(
-      //     borderRadius: BorderRadius.vertical(
-      //       bottom: Radius.circular(15.0),
-      //     ),
-      //   ),
-      //   backgroundColor: PrimaryBlue1,
-      //   title: Padding(
-      //     child: Text(
-      //       "Suas vistorias:",
-      //       textAlign: TextAlign.start,
-      //       style: TextStyle(
-      //         color: Gray6,
-      //         fontSize: 22,
-      //         fontWeight: FontWeight.w600,
-      //         fontFamily: FontNameDefaultBody,
-      //       ),
-      //     ),
-      //     padding: const EdgeInsets.only(top: 20, left: 25, bottom: 15),
-      //   ),
-      // ),
       body: Container(child: _showPage),
-      // body: Container(
-      //   color: Colors.white,
-      //   child: Center(
-      //     child: Column(
-      //       children: <Widget>[
-      //         Text(_page.toString(), textScaleFactor: 10.0),
-      //         RaisedButton(
-      //           child: Text('Go To Page of index 1'),
-      //           onPressed: () {
-      //             //Page change using state does the same as clicking index 1 navigation button
-      //             final CurvedNavigationBarState navBarState =
-      //                 _bottomNavigationKey.currentState;
-      //             navBarState.setPage(1);
-      //           },
-      //         )
-      //       ],
-      //     ),
-      //   ),
-      // ),
       bottomNavigationBar: CurvedNavigationBar(
         index: _page,
         color: PrimaryBlue2,

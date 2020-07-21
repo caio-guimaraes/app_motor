@@ -58,9 +58,41 @@ class _SurveyListPageState extends State<SurveyListPage> {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(top: 40.0, left: 45.0),
+            child: RaisedButton(
+              onPressed: () {},
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0)),
+              padding: EdgeInsets.all(0.0),
+              child: Ink(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [PrimaryBlue3, SecondaryBlue1],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                  ),
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                child: Container(
+                  constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Seja bem-vindo de volta!",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontFamily: FontNameDefaultTitle,
+                        fontWeight: FontWeight.w400),
+                  ),
+                ),
+              ),
+            ),
+          ),
           Padding(
             child: Text(
               "Últimas vistorias:",
@@ -74,26 +106,77 @@ class _SurveyListPageState extends State<SurveyListPage> {
             ),
             padding: const EdgeInsets.only(top: 40, left: 20, bottom: 15),
           ),
-          Expanded(
-            child: ListView.builder(
-              // scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  child: CardBody(
-                      _surveys[index].local, _surveys[index].createdDate),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            SurveyDetailPage(survey: _surveys[index]),
-                      ),
-                    );
-                  },
-                );
-              },
-              itemCount: _surveys.length,
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: SizedBox(
+                  height: 130.0,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        child: CardBody(
+                            _surveys[index].local, _surveys[index].createdDate),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  SurveyDetailPage(survey: _surveys[index]),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    itemCount: _surveys.length,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Padding(
+            child: Text(
+              "Últimos áudios:",
+              textAlign: TextAlign.start,
+              style: TextStyle(
+                color: PrimaryBlue2,
+                fontSize: 22,
+                fontWeight: FontWeight.w800,
+                fontFamily: FontNameDefaultBody,
+              ),
             ),
+            padding: const EdgeInsets.only(top: 40, left: 20, bottom: 15),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Expanded(
+                child: SizedBox(
+                  height: 130.0,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        child: CardBody(
+                            _surveys[index].local, _surveys[index].createdDate),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  SurveyDetailPage(survey: _surveys[index]),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    itemCount: _surveys.length,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

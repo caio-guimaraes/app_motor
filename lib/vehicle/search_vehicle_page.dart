@@ -30,7 +30,7 @@ class _SearchVehicleState extends State<SearchVehicle> {
           keyboardType: TextInputType.text,
           controller: bloc.plateCtrl,
           decoration: InputDecoration(
-            labelText: "Buscar placa do veículo:",
+            labelText: "Pesquisar placa:",
             labelStyle: AppBarStyle,
           ),
           style: AppBarStyle,
@@ -110,11 +110,7 @@ class _SearchVehicleState extends State<SearchVehicle> {
           ),
         ],
       ),
-      body: (is_visible == 2)
-          ? ContentWithResults(_modelo, _placa)
-          : (is_visible == 1)
-              ? ContentWithoutResults(_placa)
-              : (is_visible == 3) ? ContentLoading() : PresetContent(),
+      body: bodyContent(is_visible, _placa, _modelo),
       // if (is_visible = 2) ContentWithResults
       // else if (visible = 1) ContentWithoutResults
       // else if (visible = 3) CircularProgressIndicator
@@ -244,9 +240,39 @@ class PresetContent extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          Padding(
+            child: Text(
+              "Lista de placas dos veículos:",
+              textAlign: TextAlign.start,
+              style: TextStyle(
+                color: PrimaryBlue2,
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                fontFamily: FontNameDefaultBody,
+              ),
+            ),
+            padding: const EdgeInsets.all(16),
+          ),
           Expanded(child: vehicleListPage),
         ],
       ),
     );
+  }
+}
+
+bodyContent(is_visible, _placa, _modelo) {
+  switch (is_visible) {
+    case 1:
+      return ContentWithoutResults(_placa);
+      break;
+    case 2:
+      return ContentWithResults(_modelo, _placa);
+      break;
+    case 3:
+      return ContentLoading();
+      break;
+    default:
+      return PresetContent();
+      break;
   }
 }
