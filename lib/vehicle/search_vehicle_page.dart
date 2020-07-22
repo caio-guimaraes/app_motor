@@ -56,15 +56,15 @@ class _SearchVehicleState extends State<SearchVehicle> {
                 var plate = bloc.plateCtrl.text;
                 var response;
                 await bloc.getVehiclesByPlate(plate).then(
-                      (value) => {
-                        response = value,
-                        setState(
-                          () {
-                            response == null ? is_visible = 1 : is_visible = 2;
-                          },
-                        ),
+                  (value) => {
+                    response = value,
+                    setState(
+                      () {
+                        response == null ? is_visible = 1 : is_visible = 2;
                       },
-                    );
+                    ),
+                  },
+                );
                 if (response == null) {
                   final message = SnackBar(
                     backgroundColor: Gray6,

@@ -40,6 +40,7 @@ dev_dependencies:
   flutter_datetime_picker: ^1.3.8
   flutter_audio_recorder: ^0.5.5
   audioplayers: ^0.15.1
+  splashscreen: ^1.2.0
 
 
 # For information on the generic Dart part of this file, see the
@@ -57,6 +58,7 @@ flutter:
   assets:
     - assets/images/tick-loop.gif
     - assets/images/logoMotor.svg
+    - assets/images/logoMotor.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

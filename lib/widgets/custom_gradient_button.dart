@@ -15,9 +15,7 @@ class CustomGradientButton extends StatelessWidget {
         (nextPage != null)
             ? Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => nextPage
-                ),
+                MaterialPageRoute(builder: (context) => nextPage),
               )
             : debugPrint('Button without route');
       },

@@ -63,10 +63,6 @@ class _SurveyListPageState extends State<SurveyListPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(top: 40.0, left: 23.0),
-            child: CustomGradientButton("Seja bem-vindo(a) de volta!", null),
-          ),
-          Padding(
             child: Text(
               "Últimas vistorias:",
               textAlign: TextAlign.start,

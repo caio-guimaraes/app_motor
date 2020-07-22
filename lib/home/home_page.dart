@@ -49,6 +49,27 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: (_page == 0)
+          ? AppBar(
+              centerTitle: true,
+              title: Text(
+                "Seja bem-vindo(a) de volta!",
+                style: TextStyle(color: Colors.white),
+              ),
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: <Color>[PrimaryRed3, PrimaryBlue3],
+                  ),
+                ),
+              ),
+            )
+          : PreferredSize(
+              preferredSize: Size.fromHeight(0.0),
+              child: Container(color: PrimaryBlue3,),
+            ),
       body: Container(child: _showPage),
       bottomNavigationBar: CurvedNavigationBar(
         index: _page,

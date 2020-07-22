@@ -151,7 +151,7 @@ class _SurveyPageState extends State<SurveyPage> {
               ),
             ),
             SizedBox(
-              height: 300.0,
+              height: 290.0,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,

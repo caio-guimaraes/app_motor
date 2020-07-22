@@ -74,54 +74,56 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
                 fontFamily: FontNameDefaultBody,
               ),
             ),
-            padding: const EdgeInsets.only(top: 30, left: 25),
+            padding: const EdgeInsets.only(top: 30, left: 25, bottom: 20.0),
           ),
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: new Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                new Container(
-                  child: Padding(
-                    padding: const EdgeInsets.all(60.0),
-                    child: FlatButton(
-                      onPressed: () {
-                        switch (_currentStatus) {
-                          case RecordingStatus.Initialized:
-                            {
-                              _start();
-                              break;
-                            }
-                          case RecordingStatus.Recording:
-                            {
-                              _stop();
-                              break;
-                            }
-                          case RecordingStatus.Stopped:
-                            {
-                              _init();
-                              break;
-                            }
-                          default:
-                            break;
-                        }
-                      },
-                      child: Column(
-                        children: <Widget>[
-                          _buildIcon(_currentStatus),
-                          _buildTextRecord(_currentStatus),
-                        ],
-                      ),
-                    ),
-                  ),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: PrimaryBlue1,
-                      width: 2.5,
-                    ),
-                  ),
-                ),
+                (_currentStatus != null)
+                    ? Container(
+                        child: Padding(
+                          padding: const EdgeInsets.all(50.0),
+                          child: FlatButton(
+                            onPressed: () {
+                              switch (_currentStatus) {
+                                case RecordingStatus.Initialized:
+                                  {
+                                    _start();
+                                    break;
+                                  }
+                                case RecordingStatus.Recording:
+                                  {
+                                    _stop();
+                                    break;
+                                  }
+                                case RecordingStatus.Stopped:
+                                  {
+                                    _init();
+                                    break;
+                                  }
+                                default:
+                                  break;
+                              }
+                            },
+                            child: Column(
+                              children: <Widget>[
+                                _buildIcon(_currentStatus),
+                                _buildTextRecord(_currentStatus),
+                              ],
+                            ),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: PrimaryBlue1,
+                            width: 2.5,
+                          ),
+                        ),
+                      )
+                    : Container(),
                 SizedBox(
                   height: 90.0,
                 ),
@@ -221,7 +223,8 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
                   if (result.statusCode == 201) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SurveyComplete(widget.plate)),
+                      MaterialPageRoute(
+                          builder: (context) => SurveyComplete(widget.plate)),
                     );
                   } else {
                     final message = SnackBar(content: Text("Tente novamente"));
