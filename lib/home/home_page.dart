@@ -1,3 +1,4 @@
+import 'package:app_motor/audio/list_audio_page.dart';
 import 'package:app_motor/style.dart';
 import 'package:app_motor/survey/survey_list_page.dart';
 import 'package:app_motor/vehicle/search_vehicle_page.dart';
@@ -101,7 +102,7 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SearchVehicle(),
+                      builder: (context) => AudioListPage(),
                     ),
                   );
                 },
