@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class VehicleBloc {
-  final String url = "https://appmotorbackend.herokuapp.com/api/vehicle/";
+  final String url = "https://appmotorbackend.herokuapp.com/api/vehicle/plate/";
   TextEditingController plateCtrl = new TextEditingController();
   TextEditingController modelCtrl = new TextEditingController();
   int yearCtrl;
