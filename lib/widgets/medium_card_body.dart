@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 import '../style.dart';
 
-class CardBody extends StatelessWidget {
+class MediumCardBody extends StatelessWidget {
   String title = '';
   String subtitle = '';
 
-  CardBody(this.title, this.subtitle);
+  MediumCardBody(this.title, this.subtitle);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 5, right: 5),
+      padding: const EdgeInsets.only(left: 7, right: 7),
       child: Container(
         width: 130.0,
         child: Card(

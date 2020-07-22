@@ -1,6 +1,7 @@
 import 'package:app_motor/models/vehicle_model.dart';
 import 'package:app_motor/survey/survey_register_page.dart';
-import 'package:app_motor/widgets/card_body.dart';
+import 'package:app_motor/widgets/medium_card_body.dart';
+import 'package:app_motor/widgets/big_card_body.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -55,7 +56,7 @@ class _VehicleListPageState extends State<VehicleListPage> {
         return GestureDetector(
           child: Padding(
             padding: const EdgeInsets.only(left: 7, right: 7),
-            child: CardBody(_surveys[index].plate, _surveys[index].model),
+            child: BigCardBody(_surveys[index].plate, _surveys[index].model),
           ),
           onTap: () {
             Navigator.push(

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:app_motor/audio/recording_audio_bloc.dart';
 import 'package:app_motor/home/home_page.dart';
+import 'package:app_motor/survey/survey_complete.dart';
 import 'package:app_motor/vehicle/search_vehicle_page.dart';
 import 'package:app_motor/vehicle/vehicle_register_page.dart';
 import 'package:app_motor/widgets/progress_bar.dart';
@@ -67,7 +68,7 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
               "Grave o áudio da sua vistoria:",
               textAlign: TextAlign.start,
               style: TextStyle(
-                color: Gray3,
+                color: PrimaryBlue1,
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
                 fontFamily: FontNameDefaultBody,
@@ -82,7 +83,7 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
               children: <Widget>[
                 new Container(
                   child: Padding(
-                    padding: const EdgeInsets.all(70.0),
+                    padding: const EdgeInsets.all(60.0),
                     child: FlatButton(
                       onPressed: () {
                         switch (_currentStatus) {
@@ -114,14 +115,15 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
                     ),
                   ),
                   decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: PrimaryBlue1,
-                        width: 2.0,
-                      )),
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: PrimaryBlue1,
+                      width: 2.5,
+                    ),
+                  ),
                 ),
                 SizedBox(
-                  height: 70.0,
+                  height: 90.0,
                 ),
                 new Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -131,7 +133,7 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
                           ? _onPlayAudio
                           : _pauseAudio,
                       child: new Row(children: <Widget>[_buildIconPlay()]),
-                    )
+                    ),
                   ],
                 ),
                 new SizedBox(
@@ -144,8 +146,8 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
                     child: LinearProgressIndicator(
                       value:
                           _position != null ? _result : 0.0, // percent filled
-                      valueColor: AlwaysStoppedAnimation<Color>(Gray4),
-                      backgroundColor: Gray5,
+                      valueColor: AlwaysStoppedAnimation<Color>(PrimaryBlue1),
+                      backgroundColor: PrimaryBlue3,
                     ),
                   ),
                 ),
@@ -155,7 +157,7 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
                     Text(
                       _varPosition(),
                       style: TextStyle(
-                          color: Gray3,
+                          color: PrimaryBlue1,
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                           fontFamily: FontNameDefaultBody),
@@ -163,7 +165,7 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
                     Text(
                       _varDuration(),
                       style: TextStyle(
-                          color: Gray3,
+                          color: PrimaryBlue1,
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                           fontFamily: FontNameDefaultBody),
@@ -219,7 +221,7 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
                   if (result.statusCode == 201) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => HomePage()),
+                      MaterialPageRoute(builder: (context) => SurveyComplete(widget.plate)),
                     );
                   } else {
                     final message = SnackBar(content: Text("Tente novamente"));
@@ -240,7 +242,7 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
       if (await FlutterAudioRecorder.hasPermissions) {
         String customPath = '/flutter_audio_recorder_';
         io.Directory appDocDirectory;
-//        io.Directory appDocDirectory = await getApplicationDocumentsDirectory();
+        // io.Directory appDocDirectory = await getApplicationDocumentsDirectory();
         if (io.Platform.isIOS) {
           appDocDirectory = await getApplicationDocumentsDirectory();
         } else {
@@ -502,8 +504,8 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
   Widget _buildIconPlay() {
     Icon icon;
     _currentAudio.state == AudioPlayerState.PLAYING
-        ? icon = new Icon(Icons.pause, color: Gray4, size: 50.0)
-        : icon = new Icon(Icons.play_arrow, color: Gray4, size: 50.0);
+        ? icon = new Icon(Icons.pause, color: PrimaryBlue1, size: 50.0)
+        : icon = new Icon(Icons.play_arrow, color: PrimaryBlue1, size: 50.0);
     return icon;
   }
 
@@ -541,9 +543,9 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
     return Text(
       text,
       style: TextStyle(
-          color: PrimaryBlue1,
-          fontSize: 24,
-          fontWeight: FontWeight.w400,
+          color: PrimaryRed1,
+          fontSize: 22,
+          fontWeight: FontWeight.w600,
           fontFamily: FontNameDefaultBody),
     );
   }
@@ -594,8 +596,8 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
   }
 
   _onPlayAudio() async {
-    print("CAMINHO"+_current.path);
-    print("STATUS"+_currentStatus.toString());
+    print("CAMINHO" + _current.path);
+    print("STATUS" + _currentStatus.toString());
     if (_currentStatus != RecordingStatus.Initialized) {
       File file = File(
         "${_current.path}",

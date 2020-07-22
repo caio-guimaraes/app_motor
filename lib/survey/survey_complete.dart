@@ -1,0 +1,59 @@
+import 'package:app_motor/home/home_page.dart';
+import 'package:app_motor/widgets/custom_gradient_button.dart';
+import 'package:app_motor/widgets/progress_bar.dart';
+import 'package:flutter/material.dart';
+
+import '../style.dart';
+
+class SurveyComplete extends StatelessWidget {
+  final String plate;
+
+  SurveyComplete(this.plate);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Vistoria do veículo " + plate,
+          style: AppBarStyle,
+        ),
+        backgroundColor: PrimaryBlue3,
+      ),
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Padding(
+              child: Text(
+                "Vistoria registrada com sucesso!",
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  color: PrimaryBlue1,
+                  fontSize: 22,
+                  fontWeight: FontWeight.w900,
+                  fontFamily: FontNameDefaultBody,
+                ),
+              ),
+              padding: const EdgeInsets.only(bottom: 40.0),
+            ),
+            Image(
+              image: AssetImage('assets/images/tick-loop.gif'),
+            ),
+            Padding(
+              child: GestureDetector(
+                child: CustomGradientButton("Voltar para home", HomePage()),
+              ),
+              padding: const EdgeInsets.only(bottom: 20.0, top: 100.0),
+            ),
+            ProgressBar(1.0),
+            SizedBox(
+              height: 30.0,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}

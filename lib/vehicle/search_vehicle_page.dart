@@ -2,7 +2,8 @@ import 'package:app_motor/style.dart';
 import 'package:app_motor/vehicle/vehicle_bloc.dart';
 import 'package:app_motor/survey/survey_register_page.dart';
 import 'package:app_motor/vehicle/vehicle_list_page.dart';
-import 'package:app_motor/widgets/card_body.dart';
+import 'package:app_motor/widgets/big_card_body.dart';
+import 'package:app_motor/widgets/medium_card_body.dart';
 import 'package:app_motor/widgets/curved_navigation.dart';
 import 'package:app_motor/vehicle/vehicle_register_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -130,7 +131,7 @@ class ContentWithResults extends StatelessWidget {
     return ListView(
       children: <Widget>[
         GestureDetector(
-          child: CardBody(_placaBody, _modeloBody),
+          child: BigCardBody(_placaBody, _modeloBody),
           onTap: () {
             Navigator.push(
               context,

@@ -1,8 +1,9 @@
 import 'package:app_motor/models/survey_model.dart';
 import 'package:app_motor/style.dart';
 import 'package:app_motor/survey/survey_detail_page.dart';
+import 'package:app_motor/widgets/custom_gradient_button.dart';
 import 'package:flutter/material.dart';
-import 'package:app_motor/widgets/card_body.dart';
+import 'package:app_motor/widgets/medium_card_body.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -62,36 +63,8 @@ class _SurveyListPageState extends State<SurveyListPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(top: 40.0, left: 45.0),
-            child: RaisedButton(
-              onPressed: () {},
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0)),
-              padding: EdgeInsets.all(0.0),
-              child: Ink(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [PrimaryBlue3, SecondaryBlue1],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                  ),
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                child: Container(
-                  constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Seja bem-vindo(a) de volta!",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontFamily: FontNameDefaultTitle,
-                        fontWeight: FontWeight.w800),
-                  ),
-                ),
-              ),
-            ),
+            padding: const EdgeInsets.only(top: 40.0, left: 23.0),
+            child: CustomGradientButton("Seja bem-vindo(a) de volta!", null),
           ),
           Padding(
             child: Text(
@@ -116,7 +89,7 @@ class _SurveyListPageState extends State<SurveyListPage> {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return GestureDetector(
-                        child: CardBody(
+                        child: MediumCardBody(
                             _surveys[index].local, _surveys[index].createdDate),
                         onTap: () {
                           Navigator.push(
@@ -159,7 +132,7 @@ class _SurveyListPageState extends State<SurveyListPage> {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return GestureDetector(
-                        child: CardBody(
+                        child: MediumCardBody(
                             _surveys[index].local, _surveys[index].createdDate),
                         onTap: () {
                           Navigator.push(
