@@ -23,34 +23,46 @@ class SurveyComplete extends StatelessWidget {
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Padding(
-              child: Text(
-                "Vistoria registrada com sucesso!",
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                  color: PrimaryBlue1,
-                  fontSize: 22,
-                  fontWeight: FontWeight.w900,
-                  fontFamily: FontNameDefaultBody,
-                ),
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    child: Text(
+                      "Vistoria registrada com sucesso!",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        color: PrimaryBlue1,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w900,
+                        fontFamily: FontNameDefaultBody,
+                      ),
+                    ),
+                    padding: const EdgeInsets.only(top: 90.0, bottom: 40.0),
+                  ),
+                  Image(
+                    image: AssetImage('assets/images/tick-loop.gif'),
+                  ),
+                ],
               ),
-              padding: const EdgeInsets.only(bottom: 40.0),
-            ),
-            Image(
-              image: AssetImage('assets/images/tick-loop.gif'),
             ),
             Padding(
-              child: GestureDetector(
-                child: CustomGradientButton("Voltar para home", "/home"),
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    child: GestureDetector(
+                      child: CustomGradientButton("Voltar para home", "/home"),
+                    ),
+                    padding: const EdgeInsets.only(bottom: 20.0, top: 100.0),
+                  ),
+                  ProgressBar(1.0),
+                ],
               ),
-              padding: const EdgeInsets.only(bottom: 20.0, top: 100.0),
             ),
-            ProgressBar(1.0),
-            SizedBox(
-              height: 30.0,
-            )
           ],
         ),
       ),

@@ -23,7 +23,7 @@ class _CurvedNavigationState extends State<CurvedNavigation> {
     return CurvedNavigationBar(
       index: _page,
       color: PrimaryBlue3,
-      backgroundColor: Gray6,
+      backgroundColor: Colors.orange,
       height: 70,
       items: <Widget>[
         Icon(Icons.home,

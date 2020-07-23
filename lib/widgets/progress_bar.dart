@@ -11,7 +11,7 @@ class ProgressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0),
+      padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: Container(

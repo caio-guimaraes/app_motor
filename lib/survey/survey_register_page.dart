@@ -40,133 +40,139 @@ class _SurveyPageState extends State<SurveyPage> {
         key: _formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Padding(
-              child: Text(
-                "Registre sua vistoria:",
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                  color: Gray3,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: FontNameDefaultBody,
-                ),
+              padding: EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    child: Text(
+                      "Registre sua vistoria:",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        color: Gray3,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: FontNameDefaultBody,
+                      ),
+                    ),
+                    padding: const EdgeInsets.only(bottom: 15.0),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+                    child: TextFormField(
+                      controller: survey.vehicleCtrl,
+                      keyboardType: TextInputType.text,
+                      readOnly: true,
+                      decoration: new InputDecoration(
+                        labelText: "Placa",
+                        hintText: widget.plate,
+                        hintStyle: TextStyle(
+                          color: Gray3,
+                          fontFamily: FontNameDefaultBody,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        labelStyle: TextStyle(
+                            color: Gray3,
+                            fontFamily: FontNameDefaultBody,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 18.0),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: PrimaryBlue1, width: 1.2),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        // enabledBorder: OutlineInputBorder(
+                        //   borderSide: BorderSide(color: Gray4, width: 1.5),
+                        //   borderRadius: BorderRadius.circular(15),
+                        // ),
+                        suffixIcon: Icon(
+                          Icons.lock,
+                          color: Gray4,
+                        ),
+                      ),
+                      // onEditingComplete: () async {
+                      //   var result = await survey.getVehicles(survey.vehicleCtrl.text);
+                      //   survey.idVehicle = result["id"];
+                      //   print(result);
+                      //   print(result["id"]);
+                      // },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+                    child: DropdownButtonFormField<String>(
+                      value: _local,
+                      // hint: Text("Selecione o local"),
+                      items: <String>[
+                        'Ponto de Venda',
+                        'Céu aberto',
+                        'Residência cliente',
+                        'Pátio de leilão',
+                        'Pátio de locadora',
+                        'Pátio de vistoria',
+                        'Revenda autorizada',
+                        'Lojista'
+                      ].map((String value) {
+                        return new DropdownMenuItem<String>(
+                          value: value,
+                          child: new Text(value),
+                        );
+                      }).toList(),
+                      onChanged: (String category) {
+                        setState(
+                          () {
+                            _local = category;
+                            controller:
+                            survey.localCtrl = _local;
+                            print("Selected: ${_local}");
+                          },
+                        );
+                      },
+                      decoration: new InputDecoration(
+                        labelText: "Selecione o local:",
+                        hintStyle: TextStyle(
+                          color: PrimaryBlue1,
+                          fontFamily: FontNameDefaultBody,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        labelStyle: TextStyle(
+                            color: Gray3,
+                            fontFamily: FontNameDefaultBody,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 18.0),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: PrimaryBlue1, width: 1.2),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        // enabledBorder: OutlineInputBorder(
+                        //   // borderSide: BorderSide(color: Gray3, width: 1.5),
+                        //   borderRadius: BorderRadius.circular(15),
+                        // ),
+                      ),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Escolha um local';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ],
               ),
-              padding: const EdgeInsets.only(top: 30, left: 25),
             ),
             Padding(
-              padding: EdgeInsets.all(20),
-              child: TextFormField(
-                controller: survey.vehicleCtrl,
-                keyboardType: TextInputType.text,
-                readOnly: true,
-                decoration: new InputDecoration(
-                  labelText: "Placa",
-                  hintText: widget.plate,
-                  hintStyle: TextStyle(
-                    color: Gray3,
-                    fontFamily: FontNameDefaultBody,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  labelStyle: TextStyle(
-                      color: Gray3,
-                      fontFamily: FontNameDefaultBody,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 18.0),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: PrimaryBlue1, width: 1.2),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  // enabledBorder: OutlineInputBorder(
-                  //   borderSide: BorderSide(color: Gray4, width: 1.5),
-                  //   borderRadius: BorderRadius.circular(15),
-                  // ),
-                  suffixIcon: Icon(
-                    Icons.lock,
-                    color: Gray4,
-                  ),
-                ),
-                // onEditingComplete: () async {
-                //   var result = await survey.getVehicles(survey.vehicleCtrl.text);
-                //   survey.idVehicle = result["id"];
-                //   print(result);
-                //   print(result["id"]);
-                // },
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: DropdownButtonFormField<String>(
-                value: _local,
-                // hint: Text("Selecione o local"),
-                items: <String>[
-                  'Ponto de Venda',
-                  'Céu aberto',
-                  'Residência cliente',
-                  'Pátio de leilão',
-                  'Pátio de locadora',
-                  'Pátio de vistoria',
-                  'Revenda autorizada',
-                  'Lojista'
-                ].map((String value) {
-                  return new DropdownMenuItem<String>(
-                    value: value,
-                    child: new Text(value),
-                  );
-                }).toList(),
-                onChanged: (String category) {
-                  setState(
-                    () {
-                      _local = category;
-                      controller:
-                      survey.localCtrl = _local;
-                      print("Selected: ${_local}");
-                    },
-                  );
-                },
-                decoration: new InputDecoration(
-                  labelText: "Selecione o local:",
-                  hintStyle: TextStyle(
-                    color: PrimaryBlue1,
-                    fontFamily: FontNameDefaultBody,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  labelStyle: TextStyle(
-                      color: Gray3,
-                      fontFamily: FontNameDefaultBody,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 18.0),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: PrimaryBlue1, width: 1.2),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  // enabledBorder: OutlineInputBorder(
-                  //   // borderSide: BorderSide(color: Gray3, width: 1.5),
-                  //   borderRadius: BorderRadius.circular(15),
-                  // ),
-                ),
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Escolha um local';
-                  }
-                  return null;
-                },
-              ),
-            ),
-            SizedBox(
-              height: 290.0,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: SizedBox(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
                     width: double.infinity,
                     child: Builder(
                       builder: (context) => FlatButton(
-                        color: PrimaryBlue3,
+                        color: PrimaryBlue2,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(10.0),
@@ -244,10 +250,10 @@ class _SurveyPageState extends State<SurveyPage> {
                       ),
                     ),
                   ),
-                ),
-              ],
+                  ProgressBar(0.35),
+                ],
+              ),
             ),
-            ProgressBar(0.35),
           ],
         ),
       ),

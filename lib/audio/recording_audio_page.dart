@@ -17,6 +17,7 @@ import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../style.dart';
+import '../style.dart';
 
 class RecordingAudioPage extends StatefulWidget {
   final LocalFileSystem localFileSystem;
@@ -31,7 +32,7 @@ class RecordingAudioPage extends StatefulWidget {
 
 class _RecordingAudioPageState extends State<RecordingAudioPage> {
   FlutterAudioRecorder _recorder;
-  var bloc = new RecordingAudioBloc();
+  var bloc = RecordingAudioBloc();
   //String fp = '';
   Recording _current;
   AudioPlayer _currentAudio = AudioPlayer();
@@ -61,87 +62,90 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
         ),
         backgroundColor: PrimaryBlue3,
       ),
-      body: ListView(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Padding(
-            child: Text(
-              "Grave o áudio da sua vistoria:",
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                color: PrimaryBlue1,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                fontFamily: FontNameDefaultBody,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Padding(
+                child: Text(
+                  "Grave o áudio da sua vistoria:",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    color: PrimaryBlue1,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: FontNameDefaultBody,
+                  ),
+                ),
+                padding: const EdgeInsets.only(top: 30, left: 25, bottom: 30.0),
               ),
-            ),
-            padding: const EdgeInsets.only(top: 30, left: 25, bottom: 20.0),
+              Center(
+                child: Container(
+                  child: Padding(
+                    padding: const EdgeInsets.all(50.0),
+                    child: FlatButton(
+                      onPressed: () {
+                        switch (_currentStatus) {
+                          case RecordingStatus.Initialized:
+                            {
+                              _start();
+                              break;
+                            }
+                          case RecordingStatus.Recording:
+                            {
+                              _stop();
+                              break;
+                            }
+                          case RecordingStatus.Stopped:
+                            {
+                              _init();
+                              break;
+                            }
+                          default:
+                            break;
+                        }
+                      },
+                      child: Column(
+                        children: <Widget>[
+                          _buildIcon(_currentStatus),
+                          _buildTextRecord(_currentStatus),
+                        ],
+                      ),
+                    ),
+                  ),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: PrimaryBlue1,
+                      width: 2.5,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: new Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+            child: Column(
               children: <Widget>[
-                (_currentStatus != null)
-                    ? Container(
-                        child: Padding(
-                          padding: const EdgeInsets.all(50.0),
-                          child: FlatButton(
-                            onPressed: () {
-                              switch (_currentStatus) {
-                                case RecordingStatus.Initialized:
-                                  {
-                                    _start();
-                                    break;
-                                  }
-                                case RecordingStatus.Recording:
-                                  {
-                                    _stop();
-                                    break;
-                                  }
-                                case RecordingStatus.Stopped:
-                                  {
-                                    _init();
-                                    break;
-                                  }
-                                default:
-                                  break;
-                              }
-                            },
-                            child: Column(
-                              children: <Widget>[
-                                _buildIcon(_currentStatus),
-                                _buildTextRecord(_currentStatus),
-                              ],
-                            ),
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: PrimaryBlue1,
-                            width: 2.5,
-                          ),
-                        ),
-                      )
-                    : Container(),
-                SizedBox(
-                  height: 90.0,
-                ),
-                new Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    new FlatButton(
+                    FlatButton(
                       onPressed: _currentAudio.state != AudioPlayerState.PLAYING
                           ? _onPlayAudio
                           : _pauseAudio,
-                      child: new Row(children: <Widget>[_buildIconPlay()]),
+                      child: Row(children: <Widget>[_buildIconPlay()]),
                     ),
                   ],
                 ),
-                new SizedBox(
-                  height: 20.0,
+                SizedBox(
+                  height: 10.0,
                 ),
-                new ClipRRect(
+                ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Container(
                     height: 10,
@@ -153,7 +157,7 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
                     ),
                   ),
                 ),
-                new Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
@@ -174,67 +178,72 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
                     ),
                   ],
                 ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 20.0),
-            child: Builder(
-              builder: (context) => FlatButton(
-                color: PrimaryBlue3,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10.0),
-                  ),
+                SizedBox(
+                  height: 20.0,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
-                  child: RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: "Enviar ",
-                          style: TextStyle(
-                              color: Gray6,
-                              fontWeight: FontWeight.w600,
-                              fontFamily: FontNameDefaultBody,
-                              fontSize: 18),
+                SizedBox(
+                  width: double.infinity,
+                  child: Builder(
+                    builder: (context) => FlatButton(
+                      color: PrimaryBlue2,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
                         ),
-                        WidgetSpan(
-                          child: Icon(
-                            Icons.check_circle_outline,
-                            size: 18,
-                            color: Gray6,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
+                        child: RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: "Enviar ",
+                                style: TextStyle(
+                                    color: Gray6,
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: FontNameDefaultBody,
+                                    fontSize: 18),
+                              ),
+                              WidgetSpan(
+                                child: Icon(
+                                  Icons.send,
+                                  size: 18,
+                                  color: Gray6,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
+                      ),
+                      onPressed: () async {
+                        var audio = {};
+                        audio["audio"] = bloc.audioCtrl;
+                        print("audio" + audio["audio"]);
+                        var body = jsonEncode(audio);
+                        print("body" + body.toString());
+                        var result = await bloc.registerAudio("2", body);
+                        print(result.body);
+                        print(result.statusCode);
+                        if (result.statusCode == 201) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    SurveyComplete(widget.plate)),
+                          );
+                        } else {
+                          final message =
+                              SnackBar(content: Text("Tente novamente"));
+                          Scaffold.of(context).showSnackBar(message);
+                        }
+                      },
                     ),
                   ),
                 ),
-                onPressed: () async {
-                  var audio = {};
-                  audio["audio"] = bloc.audioCtrl;
-                  print("audio" + audio["audio"]);
-                  var body = jsonEncode(audio);
-                  print("body" + body.toString());
-                  var result = await bloc.registerAudio("2", body);
-                  print(result.body);
-                  print(result.statusCode);
-                  if (result.statusCode == 201) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SurveyComplete(widget.plate)),
-                    );
-                  } else {
-                    final message = SnackBar(content: Text("Tente novamente"));
-                    Scaffold.of(context).showSnackBar(message);
-                  }
-                },
-              ),
+                ProgressBar(0.70)
+              ],
             ),
           ),
-          ProgressBar(0.70),
         ],
       ),
     );
@@ -276,7 +285,7 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
         });
       } else {
         Scaffold.of(context).showSnackBar(
-            new SnackBar(content: new Text("You must accept permissions")));
+            SnackBar(content: Text("You must accept permissions")));
       }
     } catch (e) {
       print(e);
@@ -292,7 +301,7 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
       });
 
       const tick = const Duration(milliseconds: 50);
-      new Timer.periodic(tick, (Timer t) async {
+      Timer.periodic(tick, (Timer t) async {
         if (_currentStatus == RecordingStatus.Stopped) {
           t.cancel();
         }
@@ -318,7 +327,7 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
       });
 
       const tick = const Duration(milliseconds: 50);
-      new Timer.periodic(tick, (Timer t) async {
+      Timer.periodic(tick, (Timer t) async {
         if (_currentStatus == RecordingStatus.Stopped) {
           t.cancel();
         }
@@ -362,12 +371,12 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
     //print('$fileBytes');
     //String base64String = base64Encode(fileBytes);
     //print('$base64String');
-    //List fileBytes = new File("${result.path}").readAsBytesSync();
+    //List fileBytes = File("${result.path}").readAsBytesSync();
     //print('$fileBytes');
-    //String fileBytes2 = new File("${result.path}").readAsString();
+    //String fileBytes2 = File("${result.path}").readAsString();
     //print('$fileBytes2');
 
-    /*List fileBytesResult = await new File(result.path).readAsBytesSync();
+    /*List fileBytesResult = await File(result.path).readAsBytesSync();
     String encodedFileResult = base64Encode(fileBytesResult);*/
 
     setState(() {
@@ -416,12 +425,12 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
     //print('$fileBytes');
     //String base64String = base64Encode(fileBytes);
     //print('$base64String');
-    //List fileBytes = new File("${result.path}").readAsBytesSync();
+    //List fileBytes = File("${result.path}").readAsBytesSync();
     //print('$fileBytes');
-    //String fileBytes2 = new File("${result.path}").readAsString();
+    //String fileBytes2 = File("${result.path}").readAsString();
     //print('$fileBytes2');
 
-    /*List fileBytesResult = await new File(result.path).readAsBytesSync();
+    /*List fileBytesResult = await File(result.path).readAsBytesSync();
     String encodedFileResult = base64Encode(fileBytesResult);*/
 
     setState(() {
@@ -507,92 +516,108 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
   Widget _buildIconPlay() {
     Icon icon;
     _currentAudio.state == AudioPlayerState.PLAYING
-        ? icon = new Icon(Icons.pause, color: PrimaryBlue1, size: 50.0)
-        : icon = new Icon(Icons.play_arrow, color: PrimaryBlue1, size: 50.0);
+        ? icon = Icon(Icons.pause, color: PrimaryBlue3, size: 50.0)
+        : icon = Icon(Icons.play_arrow, color: PrimaryBlue3, size: 50.0);
     return icon;
   }
 
   Widget _buildTextRecord(RecordingStatus status) {
-    var text = "";
+    Text text;
     switch (_currentStatus) {
       case RecordingStatus.Initialized:
-        {
-          text = 'Gravar';
-          break;
-        }
+        text = Text(
+          "Gravar",
+          style: TextStyle(
+              color: PrimaryRed3,
+              fontSize: 22,
+              fontWeight: FontWeight.w600,
+              fontFamily: FontNameDefaultBody),
+        );
+        break;
       case RecordingStatus.Recording:
-        {
-          text = 'Parar';
-          break;
-        }
+        text = Text(
+          "Parar",
+          style: TextStyle(
+              color: PrimaryRed2,
+              fontSize: 22,
+              fontWeight: FontWeight.w600,
+              fontFamily: FontNameDefaultBody),
+        );
+        break;
       case RecordingStatus.Paused:
-        {
-          text = 'Resume';
-          break;
-        }
+        text = Text(
+          "Voltar",
+          style: TextStyle(
+              color: PrimaryRed3,
+              fontSize: 22,
+              fontWeight: FontWeight.w600,
+              fontFamily: FontNameDefaultBody),
+        );
+        break;
       case RecordingStatus.Stopped:
-        {
-          text = 'Regravar';
-          break;
-        }
+        text = Text(
+          "Regravar",
+          style: TextStyle(
+              color: PrimaryBlue1,
+              fontSize: 22,
+              fontWeight: FontWeight.w600,
+              fontFamily: FontNameDefaultBody),
+        );
+        break;
       case RecordingStatus.Unset:
-        {
-          text = 'Parar';
-          break;
-        }
+        text = Text(
+          "Parar",
+          style: TextStyle(
+              color: PrimaryRed2,
+              fontSize: 22,
+              fontWeight: FontWeight.w600,
+              fontFamily: FontNameDefaultBody),
+        );
+        break;
       default:
         break;
     }
-    return Text(
-      text,
-      style: TextStyle(
-          color: PrimaryRed1,
-          fontSize: 22,
-          fontWeight: FontWeight.w600,
-          fontFamily: FontNameDefaultBody),
-    );
+    return text;
   }
 
   Widget _buildIcon(RecordingStatus status) {
     Icon icon;
     switch (_currentStatus) {
       case RecordingStatus.Initialized:
-        {
-          icon = new Icon(
-            Icons.mic,
-            color: PrimaryRed3,
-            size: 150,
-          );
-          break;
-        }
+        icon = Icon(
+          Icons.mic,
+          color: PrimaryRed3,
+          size: 150,
+        );
+        break;
       case RecordingStatus.Recording:
-        {
-          icon = new Icon(
-            Icons.mic_none,
-            color: PrimaryRed3,
-            size: 150,
-          );
-          break;
-        }
+        icon = Icon(
+          Icons.mic_none,
+          color: PrimaryRed2,
+          size: 150,
+        );
+        break;
+
       case RecordingStatus.Paused:
-        {
-          icon = new Icon(
-            Icons.pause,
-            color: PrimaryRed3,
-            size: 150,
-          );
-          break;
-        }
+        icon = Icon(
+          Icons.pause,
+          color: PrimaryRed3,
+          size: 150,
+        );
+        break;
       case RecordingStatus.Stopped:
-        {
-          icon = new Icon(
-            Icons.refresh,
-            color: PrimaryRed3,
-            size: 150,
-          );
-          break;
-        }
+        icon = Icon(
+          Icons.refresh,
+          color: PrimaryBlue1,
+          size: 150,
+        );
+        break;
       default:
+        icon = Icon(
+          Icons.mic,
+          color: PrimaryRed3,
+          size: 150,
+        );
         break;
     }
     return icon;
@@ -664,10 +689,14 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
   }
 
   String _printDuration(Duration duration) {
-    String twoDigits(int n) => n.toString().padLeft(2, "0");
-    String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
-    String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
-    return "$twoDigitMinutes:$twoDigitSeconds";
+    if (duration != null) {
+      String twoDigits(int n) => n.toString().padLeft(2, "0");
+      String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
+      String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
+      return "$twoDigitMinutes:$twoDigitSeconds";
+    } else {
+      return '';
+    }
   }
 
   String _varPosition() {

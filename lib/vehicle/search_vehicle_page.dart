@@ -56,18 +56,18 @@ class _SearchVehicleState extends State<SearchVehicle> {
                 var plate = bloc.plateCtrl.text;
                 var response;
                 await bloc.getVehiclesByPlate(plate).then(
-                  (value) => {
-                    response = value,
-                    setState(
-                      () {
-                        response == null ? is_visible = 1 : is_visible = 2;
+                      (value) => {
+                        response = value,
+                        setState(
+                          () {
+                            response == null ? is_visible = 1 : is_visible = 2;
+                          },
+                        ),
                       },
-                    ),
-                  },
-                );
+                    );
                 if (response == null) {
                   final message = SnackBar(
-                    backgroundColor: Gray6,
+                    backgroundColor: Colors.white,
                     content: Padding(
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
                       child: Text(
@@ -87,7 +87,7 @@ class _SearchVehicleState extends State<SearchVehicle> {
                   );
                 } else {
                   final message = SnackBar(
-                    backgroundColor: Gray6,
+                    backgroundColor: Colors.white,
                     content: Padding(
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
                       child: Text(
@@ -130,6 +130,19 @@ class ContentWithResults extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
+        Padding(
+          child: Text(
+            "Lista de placas dos veículos:",
+            textAlign: TextAlign.start,
+            style: TextStyle(
+              color: PrimaryBlue2,
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              fontFamily: FontNameDefaultBody,
+            ),
+          ),
+          padding: const EdgeInsets.all(16),
+        ),
         GestureDetector(
           child: BigCardBody(_placaBody, _modeloBody),
           onTap: () {
