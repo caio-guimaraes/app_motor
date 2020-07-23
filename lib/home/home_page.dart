@@ -1,4 +1,5 @@
-import 'package:app_motor/audio/list_audio_page.dart';
+import 'package:app_motor/audio/audio_list_page.dart';
+import 'package:app_motor/audio/search_audio_page.dart';
 import 'package:app_motor/style.dart';
 import 'package:app_motor/survey/survey_list_page.dart';
 import 'package:app_motor/vehicle/search_vehicle_page.dart';
@@ -20,6 +21,7 @@ class _HomePageState extends State<HomePage> {
   GlobalKey _bottomNavigationKey = GlobalKey();
   final surveyListPage = SurveyListPage();
   final listVehicles = SearchVehicle();
+  final listAudio = SearchAudio();
 
   Widget _showPage = new SurveyListPage();
 
@@ -29,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         return surveyListPage;
         break;
       case 1:
-        return listVehicles;
+        return listAudio;
         break;
       case 2:
         return listVehicles;
@@ -66,10 +68,13 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+              automaticallyImplyLeading: false,
             )
           : PreferredSize(
               preferredSize: Size.fromHeight(0.0),
-              child: Container(color: PrimaryBlue3,),
+              child: Container(
+                color: PrimaryBlue3,
+              ),
             ),
       body: Container(child: _showPage),
       bottomNavigationBar: CurvedNavigationBar(

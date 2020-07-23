@@ -8,6 +8,8 @@ import 'package:app_motor/vehicle/vehicle_bloc.dart';
 import 'package:app_motor/widgets/progress_bar.dart';
 import 'package:flutter/material.dart';
 
+import '../style.dart';
+
 class SurveyPage extends StatefulWidget {
   final String plate;
 
@@ -22,6 +24,7 @@ class _SurveyPageState extends State<SurveyPage> {
   var survey = new SurveyBloc();
   var _local;
   final _formKey = GlobalKey<FormState>();
+  bool _error = false;
 
   @override
   Widget build(BuildContext context) {
@@ -74,10 +77,10 @@ class _SurveyPageState extends State<SurveyPage> {
                     borderSide: BorderSide(color: PrimaryBlue1, width: 1.2),
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Gray4, width: 1.5),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
+                  // enabledBorder: OutlineInputBorder(
+                  //   borderSide: BorderSide(color: Gray4, width: 1.5),
+                  //   borderRadius: BorderRadius.circular(15),
+                  // ),
                   suffixIcon: Icon(
                     Icons.lock,
                     color: Gray4,
@@ -137,13 +140,13 @@ class _SurveyPageState extends State<SurveyPage> {
                     borderSide: BorderSide(color: PrimaryBlue1, width: 1.2),
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Gray3, width: 1.5),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
+                  // enabledBorder: OutlineInputBorder(
+                  //   // borderSide: BorderSide(color: Gray3, width: 1.5),
+                  //   borderRadius: BorderRadius.circular(15),
+                  // ),
                 ),
                 validator: (value) {
-                  if (value == null) {
+                  if (value.isEmpty) {
                     return 'Escolha um local';
                   }
                   return null;

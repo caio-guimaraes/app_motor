@@ -5,7 +5,7 @@ import '../style.dart';
 
 class CustomGradientButton extends StatelessWidget {
   String text = '';
-  Widget nextPage;
+  String nextPage = '/';
   CustomGradientButton(this.text, this.nextPage);
 
   @override
@@ -13,10 +13,7 @@ class CustomGradientButton extends StatelessWidget {
     return RaisedButton(
       onPressed: () {
         (nextPage != null)
-            ? Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => nextPage),
-              )
+            ? Navigator.pushReplacementNamed(context, nextPage)
             : debugPrint('Button without route');
       },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),

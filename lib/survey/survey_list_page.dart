@@ -7,6 +7,8 @@ import 'package:app_motor/widgets/medium_card_body.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import '../audio/audio_list_page.dart';
+
 class SurveyListPage extends StatefulWidget {
   SurveyListPage({Key key}) : super(key: key);
 
@@ -16,9 +18,12 @@ class SurveyListPage extends StatefulWidget {
 
 class _SurveyListPageState extends State<SurveyListPage> {
   List<Survey> _surveys = List<Survey>();
+  AudioListPage audioList = AudioListPage(
+    type: "medium",
+  );
 
   Future<List<Survey>> fetchSurvey() async {
-    var url = "https://appmotorbackend.herokuapp.com/api/survey";
+    var url = "https://appmotorbackend.herokuapp.com/api/survey/list?limit=4";
     var response = await http.get(
       url,
       headers: {
@@ -123,25 +128,8 @@ class _SurveyListPageState extends State<SurveyListPage> {
               Expanded(
                 child: SizedBox(
                   height: 130.0,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        child: MediumCardBody(
-                            _surveys[index].local, _surveys[index].createdDate),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  SurveyDetailPage(survey: _surveys[index]),
-                            ),
-                          );
-                        },
-                      );
-                    },
-                    itemCount: _surveys.length,
+                  child: AudioListPage(
+                    type: "medium",
                   ),
                 ),
               ),
