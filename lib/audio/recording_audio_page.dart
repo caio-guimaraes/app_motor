@@ -85,7 +85,7 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
               Center(
                 child: Container(
                   child: Padding(
-                    padding: const EdgeInsets.all(50.0),
+                    padding: const EdgeInsets.all(30.0),
                     child: FlatButton(
                       onPressed: () {
                         switch (_currentStatus) {
@@ -179,7 +179,7 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
                   ],
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 10.0,
                 ),
                 SizedBox(
                   width: double.infinity,
@@ -532,7 +532,7 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
           style: TextStyle(
               color: PrimaryRed3,
               fontSize: 22,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w400,
               fontFamily: FontNameDefaultBody),
         );
         break;
@@ -542,7 +542,7 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
           style: TextStyle(
               color: PrimaryRed2,
               fontSize: 22,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w400,
               fontFamily: FontNameDefaultBody),
         );
         break;
@@ -552,7 +552,7 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
           style: TextStyle(
               color: PrimaryRed3,
               fontSize: 22,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w400,
               fontFamily: FontNameDefaultBody),
         );
         break;
@@ -562,7 +562,7 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
           style: TextStyle(
               color: PrimaryBlue1,
               fontSize: 22,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w400,
               fontFamily: FontNameDefaultBody),
         );
         break;
@@ -572,7 +572,7 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
           style: TextStyle(
               color: PrimaryRed2,
               fontSize: 22,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w400,
               fontFamily: FontNameDefaultBody),
         );
         break;
@@ -589,14 +589,14 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
         icon = Icon(
           Icons.mic,
           color: PrimaryRed3,
-          size: 150,
+          size: 80.0,
         );
         break;
       case RecordingStatus.Recording:
         icon = Icon(
           Icons.mic_none,
           color: PrimaryRed2,
-          size: 150,
+          size: 80.0,
         );
         break;
 
@@ -604,21 +604,21 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
         icon = Icon(
           Icons.pause,
           color: PrimaryRed3,
-          size: 150,
+          size: 80.0,
         );
         break;
       case RecordingStatus.Stopped:
         icon = Icon(
           Icons.refresh,
           color: PrimaryBlue1,
-          size: 150,
+          size: 80.0,
         );
         break;
       default:
         icon = Icon(
           Icons.mic,
           color: PrimaryRed3,
-          size: 150,
+          size: 80.0,
         );
         break;
     }

@@ -42,7 +42,7 @@ class SurveyComplete extends StatelessWidget {
                         fontFamily: FontNameDefaultBody,
                       ),
                     ),
-                    padding: const EdgeInsets.only(top: 90.0, bottom: 40.0),
+                    padding: const EdgeInsets.only(bottom: 40.0),
                   ),
                   Image(
                     image: AssetImage('assets/images/tick-loop.gif'),
@@ -58,7 +58,7 @@ class SurveyComplete extends StatelessWidget {
                     child: GestureDetector(
                       child: CustomGradientButton("Voltar para home", "/home"),
                     ),
-                    padding: const EdgeInsets.only(bottom: 20.0, top: 100.0),
+                    padding: const EdgeInsets.only(bottom: 20.0, top: 0.0),
                   ),
                   ProgressBar(1.0),
                 ],
