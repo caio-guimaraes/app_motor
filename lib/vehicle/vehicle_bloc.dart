@@ -7,10 +7,10 @@ class VehicleBloc {
   final String url = "https://appmotorbackend.herokuapp.com/api/vehicle/";
   TextEditingController plateCtrl = new TextEditingController();
   TextEditingController modelCtrl = new TextEditingController();
-  int yearCtrl;
+  TextEditingController yearCtrl = new TextEditingController();
   int mileageCtrl;
   String fuelCtrl;
-  bool turboCtrl;
+  bool turboCtrl = false;
 
   Future<http.Response> registerVehicle(var body) async {
     var prefs = await SharedPreferences.getInstance();

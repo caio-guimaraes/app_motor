@@ -43,7 +43,7 @@ class _SurveyPageState extends State<SurveyPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -67,7 +67,7 @@ class _SurveyPageState extends State<SurveyPage> {
                       keyboardType: TextInputType.text,
                       readOnly: true,
                       decoration: new InputDecoration(
-                        labelText: "Placa",
+                        labelText: "Placa (${widget.plate.toString()})",
                         hintText: widget.plate,
                         hintStyle: TextStyle(
                           color: Gray3,
@@ -79,11 +79,11 @@ class _SurveyPageState extends State<SurveyPage> {
                             fontFamily: FontNameDefaultBody,
                             fontWeight: FontWeight.w400,
                             fontSize: 18.0),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: PrimaryBlue1, width: 1.2),
-                          borderRadius: BorderRadius.circular(15),
-                        ),
+                        // focusedBorder: OutlineInputBorder(
+                        //   borderSide:
+                        //       BorderSide(color: PrimaryBlue1, width: 1.2),
+                        //   borderRadius: BorderRadius.circular(15),
+                        // ),
                         // enabledBorder: OutlineInputBorder(
                         //   borderSide: BorderSide(color: Gray4, width: 1.5),
                         //   borderRadius: BorderRadius.circular(15),
@@ -105,7 +105,7 @@ class _SurveyPageState extends State<SurveyPage> {
                     padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                     child: DropdownButtonFormField<String>(
                       value: _local,
-                      // hint: Text("Selecione o local"),
+                      hint: Text("Selecione o local"),
                       items: <String>[
                         'Ponto de Venda',
                         'Céu aberto',
@@ -132,7 +132,6 @@ class _SurveyPageState extends State<SurveyPage> {
                         );
                       },
                       decoration: new InputDecoration(
-                        labelText: "Selecione o local:",
                         hintStyle: TextStyle(
                           color: PrimaryBlue1,
                           fontFamily: FontNameDefaultBody,
@@ -154,7 +153,7 @@ class _SurveyPageState extends State<SurveyPage> {
                         // ),
                       ),
                       validator: (value) {
-                        if (value.isEmpty) {
+                        if (value == null) {
                           return 'Escolha um local';
                         }
                         return null;

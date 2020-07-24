@@ -8,6 +8,8 @@ import 'package:app_motor/survey/survey_bloc.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
+import '../vehicle/vehicle_register_page.dart';
+
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
 
@@ -107,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AudioListPage(),
+                      builder: (context) => SearchVehicle(),
                     ),
                   );
                 },
@@ -122,7 +124,30 @@ class _HomePageState extends State<HomePage> {
                 backgroundColor: Gray6,
               ),
             )
-          : SizedBox(),
+          : (_page == 2)
+              ? Padding(
+                  padding: const EdgeInsets.only(bottom: 20.0),
+                  child: FloatingActionButton.extended(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => VehicleRegisterPage(),
+                        ),
+                      );
+                    },
+                    label: Text(
+                      'Novo veículo',
+                      style: TextStyle(color: Gray2, fontSize: 16),
+                    ),
+                    icon: Icon(
+                      Icons.add,
+                      color: Gray2,
+                    ),
+                    backgroundColor: Gray6,
+                  ),
+                )
+              : SizedBox(),
     );
   }
 }

@@ -224,12 +224,14 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
                         var result = await bloc.registerAudio("2", body);
                         print(result.body);
                         print(result.statusCode);
+                        String texto = "Vistoria do veículo " + widget.plate;
                         if (result.statusCode == 201) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    SurveyComplete(widget.plate)),
+                              builder: (context) => SurveyComplete(texto, "Vistoria registrada com sucesso!"
+                              ),
+                            ),
                           );
                         } else {
                           final message =

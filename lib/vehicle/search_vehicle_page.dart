@@ -179,14 +179,14 @@ class ContentWithoutResults extends StatelessWidget {
                   child: Icon(
                     Icons.not_interested,
                     size: 24,
-                    color: Gray4,
+                    color: Gray5,
                   ),
                 ),
                 TextSpan(
                   text: " Sem resultados",
                   style: TextStyle(
-                      color: Gray4,
-                      fontWeight: FontWeight.w600,
+                      color: Gray5,
+                      fontWeight: FontWeight.w400,
                       fontFamily: FontNameDefaultBody,
                       fontSize: 22),
                 ),
@@ -197,14 +197,14 @@ class ContentWithoutResults extends StatelessWidget {
             height: 10,
           ),
           FlatButton(
-            color: Gray4,
+            color: Gray5,
             child: Padding(
               padding: EdgeInsets.only(
                   top: 15.0, bottom: 15.0, left: 35.0, right: 35.0),
               child: Text(
                 "Cadastrar",
                 style: TextStyle(
-                  color: Gray6,
+                  color: Colors.white,
                   fontWeight: FontWeight.w600,
                   fontSize: 22,
                   fontFamily: FontNameDefaultBody,

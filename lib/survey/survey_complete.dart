@@ -6,16 +6,17 @@ import 'package:flutter/material.dart';
 import '../style.dart';
 
 class SurveyComplete extends StatelessWidget {
-  final String plate;
+  final String textAppBar;
+  final String textSuccess;
 
-  SurveyComplete(this.plate);
+  SurveyComplete(this.textAppBar, this.textSuccess);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Vistoria do veículo " + plate,
+          textAppBar,
           style: AppBarStyle,
         ),
         backgroundColor: PrimaryBlue3,
@@ -32,7 +33,7 @@ class SurveyComplete extends StatelessWidget {
                 children: <Widget>[
                   Padding(
                     child: Text(
-                      "Vistoria registrada com sucesso!",
+                      textSuccess,
                       textAlign: TextAlign.start,
                       style: TextStyle(
                         color: PrimaryBlue1,

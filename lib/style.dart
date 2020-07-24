@@ -60,7 +60,13 @@ const TitleCard = TextStyle(
     fontFamily: FontNameDefaultTitle);
 
 const SubitleCard = TextStyle(
-    fontSize: 15,
+    fontSize: 16,
+    color: Gray3,
+    fontWeight: FontWeight.w400,
+    fontFamily: FontNameDefaultBody);
+
+const LabelTextStyle =TextStyle(
+    fontSize: 20,
     color: Gray3,
     fontWeight: FontWeight.w400,
     fontFamily: FontNameDefaultBody);
