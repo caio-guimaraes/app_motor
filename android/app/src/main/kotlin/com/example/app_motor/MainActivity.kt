@@ -1,4 +1,4 @@
-package com.example.app_motor
+package com.conecta.motor
 
 import io.flutter.embedding.android.FlutterActivity
 
