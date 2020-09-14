@@ -58,7 +58,7 @@ class SurveyComplete extends StatelessWidget {
                     child: GestureDetector(
                       child: CustomGradientButton("Voltar para home", "/home"),
                     ),
-                    padding: const EdgeInsets.only(bottom: 20.0, top: 0.0),
+                    padding: const EdgeInsets.only(bottom: 15.0, top: 0.0),
                   ),
                   ProgressBar(1.0),
                 ],
