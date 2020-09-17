@@ -22,8 +22,9 @@ import '../style.dart';
 class RecordingAudioPage extends StatefulWidget {
   final LocalFileSystem localFileSystem;
   final String plate;
+  final String surveyId;
 
-  RecordingAudioPage({localFileSystem, this.plate})
+  RecordingAudioPage({localFileSystem, this.plate, this.surveyId})
       : this.localFileSystem = localFileSystem ?? LocalFileSystem();
 
   @override
@@ -221,7 +222,7 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
                         print("audio" + audio["audio"]);
                         var body = jsonEncode(audio);
                         print("body" + body.toString());
-                        var result = await bloc.registerAudio("2", body);
+                        var result = await bloc.registerAudio(widget.surveyId, body);
                         print(result.body);
                         print(result.statusCode);
                         String texto = "Vistoria do veículo " + widget.plate;
@@ -234,6 +235,7 @@ class _RecordingAudioPageState extends State<RecordingAudioPage> {
                             ),
                           );
                         } else {
+                          print(result.statusCode);
                           final message =
                               SnackBar(content: Text("Tente novamente"));
                           Scaffold.of(context).showSnackBar(message);

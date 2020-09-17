@@ -232,11 +232,14 @@ class _SurveyPageState extends State<SurveyPage> {
                             print(result.body);
                             print(result.statusCode);
                             if (result.statusCode == 201) {
+                              var surveyDecode = utf8.decode(result.bodyBytes);
+                              var surveyJson = jsonDecode(surveyDecode);
+                              var id = surveyJson["id"].toString();
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      RecordingAudioPage(plate: widget.plate),
+                                      RecordingAudioPage(plate: widget.plate, surveyId: id,),
                                 ),
                               );
                             } else {
